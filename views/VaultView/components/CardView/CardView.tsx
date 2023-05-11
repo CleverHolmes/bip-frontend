@@ -53,7 +53,7 @@ const CardView: React.FC<any> = (props) => {
               isExpanded={newOpenToggle}
             >
               <div className="flex flex-col">
-                <Card isFull className="p-12">
+                <Card isFull className="p-4">
                   {subDropDownItems.map((subDropDownItems, index) => {
                     return (
                       <DropdownMenu
@@ -84,7 +84,7 @@ const CardView: React.FC<any> = (props) => {
             isExpanded={subPanelToggle}
           >
             <div className="flex flex-col">
-              <Card isFull className="p-12">
+              <Card isFull className="p-4">
                 {newDropDownItems.map((newDropDownItems, index) => {
                   return (
                     <DropdownMenu

@@ -7,16 +7,16 @@ type DropdownProperties = {
   optionName: string;
 };
 
-const DropdownMenu: React.FC<DropdownProperties> = ({
-  className,
-  value,
-  optionName,
-}) => {
+const DropdownMenu: React.FC<DropdownProperties> = ({ value, optionName }) => {
   return (
     <>
-      <button className="flex flex-col p-4 text-grayN100" value={value}>
+      <option
+        className="flex flex-col text-right p-8 text-[0.875rem] text-grayN100 cursor-pointer hover:text-grayN500"
+        value={value}
+      >
         {optionName}
-      </button>
+        {/* <p className="text-right">{optionName}</p> */}
+      </option>
     </>
   );
 };

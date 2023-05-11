@@ -49,7 +49,7 @@ const VaultCard: React.FC<VaultCardProperties> = ({
               isExpanded={openToggle}
             >
               <div className="flex flex-col">
-                <Card isFull className="p-12">
+                <Card isFull className="p-4">
                   {cardDropDownItems.map((cardDropDownItems, index) => {
                     return (
                       <DropdownMenu
