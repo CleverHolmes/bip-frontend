@@ -1,6 +1,4 @@
-/* eslint-disable import/order */
-/* eslint-disable prettier/prettier */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import TreeView from "./components/SidePanel/TreeView";
 import Button from "components/new/Button/Button";
 import { useTranslation } from "next-i18next";

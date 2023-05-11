@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import Off from "./Off";
 import On from "./On";
 import User from "./User";

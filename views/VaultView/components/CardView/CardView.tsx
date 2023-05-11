@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // Components
 import VaultCard from "./VaultCard";
@@ -6,7 +6,6 @@ import IconButton from "components/new/IconButton";
 import Menu from "components/new/Menu";
 import Button from "components/new/Button";
 import Card from "components/new/Card";
-import DropdownMenu from "./DropdownMenu";
 import { useTranslation } from "next-i18next";
 
 // Constant Data
@@ -22,6 +21,7 @@ import Icon from "components/new/Icon";
 import InputField from "components/new/InputField";
 import Checkbox from "components/new/Checkbox";
 import Radio from "components/new/Radio";
+import DropdownMenu from "components/new/DropdownMenu";
 
 const data = [
   { description: "Investment Contract.Pdf", type: "PDF" },
@@ -47,8 +47,10 @@ const CardView: React.FC<any> = (props) => {
   const [openSearch, setOpenSearch] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const { fileList } = useFileContext();
+  const menuRef = useRef(null);
 
   useEffect(() => {
+    setNewOpenToggle(false);
     if (menuValue === "Rename Folder") {
       setRenameModalOpen(true);
     } else if (menuValue === "Delete Folder") {
@@ -57,6 +59,19 @@ const CardView: React.FC<any> = (props) => {
       setCreateModalOpen(true);
     }
   }, [menuValue]);
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
+  function handleDocumentClick(event) {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setNewOpenToggle(false);
+    }
+  }
 
   function closeModal() {
     if (renameModalOpen) {
@@ -78,9 +93,9 @@ const CardView: React.FC<any> = (props) => {
     <div className="container p-12 items-center">
       {/* Header */}
       <div className="flex gap-2 flex-wrap justify-between mb-40">
-        <div className="flex items-center">
-          <div className="">Quaryterly Reports</div>
-          <div>
+        <div className="flex items-center gap-2">
+          <h1 className="font-bold text-xl">Quaryterly Reports</h1>
+          <div ref={menuRef}>
             <Menu
               button={
                 <IconButton
