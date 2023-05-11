@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import Image from "next/image";
 import classNames from "classnames";
@@ -6,6 +5,11 @@ import classNames from "classnames";
 import Card from "components/new/Card";
 import Checkbox from "components/new/Checkbox/Checkbox";
 import IconButton from "components/new/IconButton";
+
+import Menu from "components/new/Menu";
+
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
+import { cardDropDownItems } from "views/VaultView/data/DropDown";
 
 type VaultCardProperties = {
   description: string;
@@ -18,16 +22,18 @@ const VaultCard: React.FC<VaultCardProperties> = ({
   description,
   type,
 }) => {
+  
   const [isSelect, setIsSelect] = useState(false);
-
+  const [openToggle, setOpenToggle] = useState(false);
+  
   function selectFile() {
     setIsSelect(!isSelect);
   }
-  // w-[14.25rem] h-[17.625rem]
+  
   return (
     <Card
       className={classNames(
-        "flex flex-col items-center justify-center mx-auto py-0 pt-5 px-0 border w-full",
+        "flex flex-col items-center justify-center py-0 pt-5 px-0 border w-full",
         className,
         isSelect ? "border-blueN100" : "border-grayN50"
       )}
@@ -45,11 +51,35 @@ const VaultCard: React.FC<VaultCardProperties> = ({
               />
             </div>
 
-            <IconButton className="cursor-pointer" size="sm" iconName="Menu" />
-          </div>
-
-          {/* <Icon  */}
+            <Menu
+              button={
+                <IconButton
+                  className="cursor-pointer"
+                  size="sm"
+                  iconName="Menu"
+                  onClick={() => setOpenToggle(!openToggle)}
+                />
+              }
+              isExpanded={openToggle}
+            >
+              <div className="flex flex-col">
+                <Card isFull className="p-4">
+                  {cardDropDownItems.map((cardDropDownItems, index) => {
+                    return (
+                      <DropdownMenu
+                        optionName={cardDropDownItems.optionName}
+                        value={cardDropDownItems.value}
+                        key={index}
+                      />
+                    );
+                  })}
+                </Card>
+              </div>
+            </Menu>
+            
+            {/* <Icon  */}
           <div className="flex items-center justify-center px-72 py-52">
+          </div>
             <Image
               src={`/images/Vault/${type}.svg`}
               width={71}
