@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import "filepond/dist/filepond.min.css";

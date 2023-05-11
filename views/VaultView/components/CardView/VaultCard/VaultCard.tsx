@@ -8,9 +8,9 @@ import IconButton from "components/new/IconButton";
 
 import Menu from "components/new/Menu";
 
-import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import { cardDropDownItems } from "views/VaultView/data/DropDown";
 import { useFileContext } from "../../context/fileContext";
+import DropdownMenu from "components/new/DropdownMenu";
 
 type VaultCardProperties = {
   description: string;
@@ -31,9 +31,9 @@ const VaultCard: React.FC<VaultCardProperties> = ({
   function selectFile() {
     setIsSelect(!isSelect);
     let store = fileList;
-    if (!isSelect) {
+    if (isSelect === false) {
       store.push({ description: description, type: type });
-      setFileList(store);
+      setFileList([...store]);
     } else {
       store = store.filter((item) => item.description !== description);
       setFileList(store);

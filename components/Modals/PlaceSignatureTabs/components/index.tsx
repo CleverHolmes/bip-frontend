@@ -1,30 +1,30 @@
-import { useTranslation } from 'next-i18next';
-import React, { Fragment, useEffect, useRef, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { Document, Page } from 'react-pdf';
-import Image from 'next/image';
+import { useTranslation } from "next-i18next";
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { Document, Page } from "react-pdf";
+import Image from "next/image";
 import {
   PDFDocumentProxy,
   PDFPageProxy,
-} from 'pdfjs-dist/types/src/display/api';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+} from "pdfjs-dist/types/src/display/api";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
-import Button from 'components/Buttons/Button';
-import SignTab from './components/SignTab';
-import DropArea from './components/DropArea';
-import ArrowLeftRoundBlueIcon from 'public/images/icons/arrow-left-round-blue.svg';
-import ArrowRightRoundBlueIcon from 'public/images/icons/arrow-right-round-blue.svg';
-import { retrieveContractCall } from 'api/contract/retrieveContract';
-import { saveContractTabDataCall } from 'api/contract/saveContractTabData';
-import { sendToDocuSignCall } from 'api/contract/sendToDocuSign';
+import Button from "components/Buttons/Button";
+import SignTab from "./components/SignTab";
+import DropArea from "./components/DropArea";
+import ArrowLeftRoundBlueIcon from "public/images/icons/arrow-left-round-blue.svg";
+import ArrowRightRoundBlueIcon from "public/images/icons/arrow-right-round-blue.svg";
+import { retrieveContractCall } from "api/contract/retrieveContract";
+import { saveContractTabDataCall } from "api/contract/saveContractTabData";
+import { sendToDocuSignCall } from "api/contract/sendToDocuSign";
 import {
   ContractTabData,
   ContractTabDataItem,
   SignTabEnum,
-} from 'models/contract/saveContractTabData';
-import CircleLoaderSpinner from 'components/CircleLoaderSpinner';
-import customImageLoader from 'utils/image-loader';
+} from "models/contract/saveContractTabData";
+import CircleLoaderSpinner from "components/CircleLoaderSpinner";
+import customImageLoader from "utils/image-loader";
 
 export type PageSize = {
   width: number;
@@ -61,7 +61,7 @@ const PlaceSignatureTabs: React.FC<Props> = ({
   const [pageSizes, setPageSizes] = useState<PageSize[]>([]);
   const [tabsPosition, setTabsPosition] = useState<ContractTabData[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
-  const [contractUri, setContractUri] = useState('');
+  const [contractUri, setContractUri] = useState("");
   const canvas = useRef(null);
   const arrayIndex = pageNumber - 1;
   const disablePrevPage = pageNumber <= 1;
@@ -75,7 +75,7 @@ const PlaceSignatureTabs: React.FC<Props> = ({
       setIsLoading(true);
       setIsSent(false);
       setIsSubmitting(false);
-      setContractUri('');
+      setContractUri("");
       getContract();
     }
   }, [isOpen]);
@@ -232,7 +232,7 @@ const PlaceSignatureTabs: React.FC<Props> = ({
                   as="h3"
                   className="text-3xl md:text-5xl font-bold font-custom1 text-primary`"
                 >
-                  {t('deal.arrange-the-signature-tabs')}
+                  {t("deal.arrange-the-signature-tabs")}
                 </Dialog.Title>
                 {!isSubmitting && !isSent && (
                   <DndProvider backend={HTML5Backend}>
@@ -289,7 +289,7 @@ const PlaceSignatureTabs: React.FC<Props> = ({
                                 alt=""
                                 loader={customImageLoader}
                                 className={`cursor-pointer ${
-                                  disablePrevPage ? 'opacity-40' : ''
+                                  disablePrevPage ? "opacity-40" : ""
                                 }`}
                                 src={ArrowLeftRoundBlueIcon}
                                 onClick={handleClickPrevPage}
@@ -301,7 +301,7 @@ const PlaceSignatureTabs: React.FC<Props> = ({
                                 alt=""
                                 loader={customImageLoader}
                                 className={`cursor-pointer ${
-                                  disableNextPage ? 'opacity-40' : ''
+                                  disableNextPage ? "opacity-40" : ""
                                 }`}
                                 src={ArrowRightRoundBlueIcon}
                                 onClick={handleClickNextPage}
@@ -314,7 +314,7 @@ const PlaceSignatureTabs: React.FC<Props> = ({
                     {!isLoading && (
                       <div
                         className={
-                          '!z-50 sm:fixed sm:left-0 sm:bottom-0 w-full  !bg-white !border-t-2 border-borderColor rounded-t-xl drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]'
+                          "!z-50 sm:fixed sm:left-0 sm:bottom-0 w-full  !bg-white !border-t-2 border-borderColor rounded-t-xl drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]"
                         }
                       >
                         <div className="flex items-center justify-end px-4 pt-5 pb-5 sm:px-10 lg:container lg:mx-auto">
@@ -324,14 +324,14 @@ const PlaceSignatureTabs: React.FC<Props> = ({
                             className="my-2 mr-2"
                             color="yellow"
                           >
-                            {t('save-draft')}
+                            {t("save-draft")}
                           </Button>
                           <Button
                             onClick={handleSendDocuSign}
                             disabled={disableSaveButton}
                             className="my-2 mr-2"
                           >
-                            {t('confirm-and-send-to-docusign-button')}
+                            {t("confirm-and-send-to-docusign-button")}
                           </Button>
                         </div>
                       </div>
@@ -341,10 +341,10 @@ const PlaceSignatureTabs: React.FC<Props> = ({
                 {isSent && (
                   <div className="flex flex-col items-center">
                     <div className="px-4 py-2 mt-20 mb-10 mr-5 text-lg text-primary font-custom1">
-                      {t('deal.your-agreement-has-been-submitted')}
+                      {t("deal.your-agreement-has-been-submitted")}
                     </div>
                     <Button onClick={handleClose} className="text-center">
-                      {t('close')}
+                      {t("close")}
                     </Button>
                   </div>
                 )}
@@ -353,13 +353,13 @@ const PlaceSignatureTabs: React.FC<Props> = ({
                 )}
                 <i
                   style={{
-                    position: 'absolute',
-                    top: '10px',
-                    right: '20px',
-                    cursor: 'pointer',
+                    position: "absolute",
+                    top: "10px",
+                    right: "20px",
+                    cursor: "pointer",
                     fontWeight: 300,
-                    fontFamily: 'sans-serif',
-                    fontStyle: 'normal',
+                    fontFamily: "sans-serif",
+                    fontStyle: "normal",
                     zIndex: 100,
                   }}
                   onClick={handleClose}
