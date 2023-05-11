@@ -1,0 +1,24 @@
+version: '3.9'
+name: "bip-frontend-development"
+services:
+  frontend:
+    container_name: frontend-development
+    restart: on-failure
+    build:
+        context: .
+        dockerfile: Dockerfile-development
+    expose:
+      - '3000' # Only expose port to Nginx service
+
+  nginx:
+    container_name: nginx-frontend-development
+    restart: on-failure
+    build:
+        context: ./nginx_container
+        dockerfile: Dockerfile-development
+    ports:
+      - '3004:3004'
+    depends_on:
+    - frontend
+    volumes:
+      - y:/bip_backend_assets_development/user:/static/user

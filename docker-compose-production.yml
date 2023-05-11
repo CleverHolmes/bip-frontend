@@ -1,0 +1,27 @@
+version: '3.9'
+name: "bip-frontend-production"
+services:
+  frontend:
+    container_name: frontend-production
+    restart: on-failure
+    environment:
+        - NODE_ENV_OVERRIDE=development
+    build:
+        context: .
+        dockerfile: Dockerfile-production
+    expose:
+      - '3000' # Only expose port to Nginx service
+
+  nginx:
+    container_name: nginx-frontend-production
+    restart: on-failure
+    build:
+        context: ./nginx_container
+        dockerfile: Dockerfile-production
+    ports:
+      - '3005:3005'
+    depends_on:
+    - frontend
+    volumes:
+      - y:/bip_backend_assets_production/user:/static/user
+

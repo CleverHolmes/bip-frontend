@@ -1,0 +1,69 @@
+{
+  "plugins" : [
+    "react-hooks"
+  ],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "comma-dangle": "off",
+    "complexity": "off",
+    "constructor-super": "error",
+    "dot-notation": "error",
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
+    "guard-for-in": "error",
+    "id-denylist": "off",
+    "id-match": "off",
+    "max-classes-per-file": "off",
+    "max-len": "off",
+    "new-parens": "error",
+    "no-bitwise": "error",
+    "no-caller": "error",
+    "no-cond-assign": "error",
+    "no-console": "warn",
+    "no-debugger": "error",
+    "no-empty": "error",
+    "no-empty-function": "off",
+    "no-eval": "error",
+    "no-fallthrough": "error",
+    "no-invalid-this": "error",
+    "no-new-wrappers": "error",
+    "no-shadow": "off",
+    "no-throw-literal": "error",
+    "no-trailing-spaces": "off",
+    "no-undef-init": "error",
+    "no-underscore-dangle": "off",
+    "no-unsafe-finally": "error",
+    "no-unused-labels": "error",
+    "no-use-before-define": "off",
+    "no-var": "error",
+    "object-shorthand": ["error", "always"],
+    "one-var": [
+      "error",
+      "never"
+    ],
+    "prefer-arrow-callback": "error",
+    "prefer-const": "off",
+    "indent": "off",
+    "radix": "error",
+    "require-await": "warn",
+    "use-isnan": "error",
+    "valid-typeof": "error",
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "off", // Checks effect dependencies
+    "prettier/prettier": ["error", { "singleQuote": true, "jsxSingleQuote:": false, "endOfLine": "auto" }],
+    "import/order": [
+      "error",
+      {
+        "groups": [["builtin", "external"]],
+        "newlines-between": "always"
+      }
+    ]
+  }
+}
+
