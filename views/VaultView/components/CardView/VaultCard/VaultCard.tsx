@@ -22,29 +22,27 @@ const VaultCard: React.FC<VaultCardProperties> = ({
   description,
   type,
 }) => {
-  
   const [isSelect, setIsSelect] = useState(false);
   const [openToggle, setOpenToggle] = useState(false);
-  
+
   function selectFile() {
     setIsSelect(!isSelect);
   }
-  
+
   return (
     <Card
       className={classNames(
-        "flex flex-col items-center justify-center py-0 pt-5 px-0 border w-full",
+        "flex flex-col items-center justify-center border",
         className,
         isSelect ? "border-blueN100" : "border-grayN50"
       )}
     >
-      <div className="w-full h-full px-5 border-b-1 border-grayN50">
-        <div className=" flex h-full flex-col align-middle gap-1 isolate">
-          {/* Actions */}
-          <div className="flex row justify-between items-center">
+      <div className="p-8 border-b-1 border-grayN50">
+        {/* Actions */}
+        <div className="">
+          <div className="flex items-center justify-between">
             <div onClick={selectFile}>
               <Checkbox
-                value="ab"
                 checked={isSelect}
                 mute={true}
                 className="cursor-pointer"
@@ -76,10 +74,10 @@ const VaultCard: React.FC<VaultCardProperties> = ({
                 </Card>
               </div>
             </Menu>
-            
-            {/* <Icon  */}
-          <div className="flex items-center justify-center px-72 py-52">
           </div>
+
+          {/* <Icon  */}
+          <div className="flex items-center justify-center px-72 py-52">
             <Image
               src={`/images/Vault/${type}.svg`}
               width={71}
@@ -91,7 +89,7 @@ const VaultCard: React.FC<VaultCardProperties> = ({
         </div>
       </div>
       {/* description */}
-      <div className="w-full flex p-5 row items-center items start">
+      <div className="w-full flex px-8 py-12 row items-center items start">
         {description}
       </div>
     </Card>

@@ -33,33 +33,33 @@ const Button: React.FC<ButtonProperties> = ({
   const [mouseOver, setMouseOver] = useState(false);
 
   const commonClasses = `inline-flex items-center justify-center ${
-    !fullWidth ? 'w-fit' : 'w-full'
+    !fullWidth ? "w-fit" : "w-full"
   } rounded-full cursor-pointer disabled:cursor-default bg-button ring-buttonOpactiy font-headings font-bold text-sm disabled:opacity-60`;
   const primaryClasses =
-    ' bg-blueN300 disabled:bg-blueN300 text-white hover:bg-blueN400 border-1 border-transparent';
+    " bg-blueN300 disabled:bg-blueN300 text-white hover:bg-blueN400 border-1 border-transparent";
   const secondaryClasses =
-    ' bg-white disabled:bg-white text-grayN500 hover:text-blueN300 hover:bg-blueN25 border-1 border-grayN500 hover:border-blueN300 ';
+    " bg-white disabled:bg-white text-grayN500 hover:text-blueN300 hover:bg-blueN25 border-1 border-grayN500 hover:border-blueN300 ";
   const tertiaryClasses =
-    ' bg-blueN50 disabled:bg-blueN50 text-blueN300 hover:bg-blueN50 border-1 disabled:border-transparent hover:border-blueN300 ';
+    " bg-blueN50 disabled:bg-blueN50 text-blueN300 hover:bg-blueN50 border-1 disabled:border-transparent hover:border-blueN300 ";
 
   const variantClasses =
-    variant === 'primary'
+    variant === "primary"
       ? primaryClasses
-      : variant === 'secondary'
+      : variant === "secondary"
       ? secondaryClasses
       : tertiaryClasses;
   const iconColor =
-    variant === 'primary'
+    variant === "primary"
       ? fullConfig.theme.colors.white
-      : variant === 'secondary'
+      : variant === "secondary"
       ? mouseOver
         ? fullConfig.theme.colors.blueN300
         : fullConfig.theme.colors.grayN500
       : fullConfig.theme.colors.blueN300;
-  const iconName = variant === 'primary' ? 'Plus' : 'Down';
-  const buttonSize = size === 'sm' ? ' px-16 py-8 ' : ' px-24 py-12  ';
+  const iconName = variant === "primary" ? "Plus" : "Down";
+  const buttonSize = size === "sm" ? " px-16 py-8 " : " px-24 py-12  ";
   // icon sizes are pretty much different as icon sizes sm for buttons should be xs and lg sm size
-  const iconSize = size === 'sm' ? 'xs' : 'sm';
+  const iconSize = size === "sm" ? "xs" : "sm";
 
   return (
     <button
@@ -75,6 +75,7 @@ const Button: React.FC<ButtonProperties> = ({
           name={iconBefore}
           color={iconColor}
           size={iconSize}
+          viewBox="0 0 16 16"
         />
       )}
       {children}
@@ -84,6 +85,7 @@ const Button: React.FC<ButtonProperties> = ({
           name={iconAfter}
           color={iconColor}
           size={iconSize}
+          viewBox="0 0 16 16"
         />
       )}
     </button>

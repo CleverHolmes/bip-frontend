@@ -1,5 +1,5 @@
-import React from 'react';
-import classNames from 'classnames';
+import React from "react";
+import classNames from "classnames";
 
 type CardProperties = React.HTMLAttributes<HTMLDivElement> & {
   isFull?: boolean;
@@ -15,9 +15,9 @@ const Card: React.FC<CardProperties> = ({
 }) => (
   <div
     className={classNames(
-      'shadow-lg rounded-xl p-16',
-      { 'w-full': isFull },
-      { 'select-none': selectNone },
+      "shadow-lg rounded-xl",
+      { "w-full": isFull },
+      { "select-none": selectNone },
       className
     )}
     {...divProps}
