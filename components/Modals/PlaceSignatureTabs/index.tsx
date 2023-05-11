@@ -1,13 +1,12 @@
-/* eslint-disable prettier/prettier */
 import { useTranslation } from "next-i18next";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Document, Page } from "react-pdf";
 import Image from "next/image";
-// import {
-//   PDFDocumentProxy,
-//   PDFPageProxy,
-// } from 'pdfjs-dist/types/src/display/api';
+import {
+  PDFDocumentProxy,
+  PDFPageProxy,
+} from "pdfjs-dist/types/src/display/api";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
@@ -30,7 +29,7 @@ import customImageLoader from "utils/image-loader";
 export type PageSize = {
   width: number;
   height: number;
-  // page: PDFPageProxy;
+  page: PDFPageProxy;
 };
 
 interface Props {
@@ -98,25 +97,25 @@ const PlaceSignatureTabs: React.FC<Props> = ({
     setContractUri(data.uri);
   };
 
-  // const handleDocumentLoadSuccess = async (pdf: PDFDocumentProxy) => {
-  //   const newPageSizes: PageSize[] = [];
-  //   const newTabsPosition: ContractTabData[] = [];
+  const handleDocumentLoadSuccess = async (pdf: PDFDocumentProxy) => {
+    const newPageSizes: PageSize[] = [];
+    const newTabsPosition: ContractTabData[] = [];
 
-  //   for (let i = 0; i < pdf.numPages; i++) {
-  //     const page = await pdf.getPage(pageNumber);
-  //     newPageSizes.push({
-  //       width: page.view[2],
-  //       height: page.view[3],
-  //       page,
-  //     });
-  //     newTabsPosition.push([]);
-  //   }
+    for (let i = 0; i < pdf.numPages; i++) {
+      const page = await pdf.getPage(pageNumber);
+      newPageSizes.push({
+        width: page.view[2],
+        height: page.view[3],
+        page,
+      });
+      newTabsPosition.push([]);
+    }
 
-  //   setPageNumber(1);
-  //   setNumPages(pdf.numPages);
-  //   setPageSizes(newPageSizes);
-  //   if (!tabsPosition.length) setTabsPosition(newTabsPosition);
-  // };
+    setPageNumber(1);
+    setNumPages(pdf.numPages);
+    setPageSizes(newPageSizes);
+    if (!tabsPosition.length) setTabsPosition(newTabsPosition);
+  };
 
   const handleDocumentLoadError = () => {
     setIsLoading(false);
@@ -262,7 +261,7 @@ const PlaceSignatureTabs: React.FC<Props> = ({
                                 counterpartySignerName={counterpartySignerName}
                               />
                             )}
-                            {/* {(!isLoading || contractUri) && (
+                            {(!isLoading || contractUri) && (
                               <Document
                                 className="flex items-center justify-center"
                                 file={contractUri}
@@ -282,7 +281,7 @@ const PlaceSignatureTabs: React.FC<Props> = ({
                                   />
                                 )}
                               </Document>
-                            )} */}
+                            )}
                           </div>
                           {!isLoading && numPages > 1 && (
                             <p className="flex items-center justify-center mt-5 text-center">

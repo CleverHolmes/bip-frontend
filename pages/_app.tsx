@@ -22,7 +22,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useTranslation } from "next-i18next";
 // @ts-ignore
-// import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
+import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
 import { NextRouter, useRouter } from "next/router";
 
 import ChatProvider from "modules/chat/chatProvider";
@@ -47,7 +47,7 @@ declare module "dayjs" {
   }
 }
 
-// pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 if (process.env.NODE_ENV !== "development") {
   Sentry.init({

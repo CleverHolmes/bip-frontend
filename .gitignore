@@ -34,12 +34,16 @@ yarn-error.log*
 .env.production.local
 
 #package.json
+package.json
 package-lock.json
 # main env
 .env
 
 # typescript
 *.tsbuildinfo
+
+/components/Modals/PlaceSignatureTabs/index.tsx
+/pages/_app.tsx
 
 .vercel
 
