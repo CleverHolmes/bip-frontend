@@ -13,7 +13,10 @@ import { useTranslation } from "next-i18next";
 
 // Constant Data
 import Subfolder from "./Subfolder";
-import { newDropDownItems } from "views/VaultView/data/DropDown";
+import {
+  subDropDownItems,
+  newDropDownItems,
+} from "views/VaultView/data/DropDown";
 import DialogModal from "components/DialogModal";
 
 const CardView: React.FC<any> = (props) => {
@@ -37,11 +40,31 @@ const CardView: React.FC<any> = (props) => {
         <div className="flex items-center">
           <div className="">Quaryterly Reports</div>
           <div>
-            <IconButton
-              className="ml-16 cursor-pointer"
-              size="sm"
-              iconName="Menu"
-            />
+            <Menu
+              button={
+                <IconButton
+                  className="cursor-pointer"
+                  size="sm"
+                  iconName="Menu"
+                  onClick={() => setOpenToggle(!openToggle)}
+                />
+              }
+              isExpanded={openToggle}
+            >
+              <div className="flex flex-col">
+                <Card isFull className="p-12">
+                  {subDropDownItems.map((subDropDownItems, index) => {
+                    return (
+                      <DropdownMenu
+                        optionName={subDropDownItems.optionName}
+                        value={subDropDownItems.value}
+                        key={index}
+                      />
+                    );
+                  })}
+                </Card>
+              </div>
+            </Menu>
           </div>
         </div>
         <div>
