@@ -14,7 +14,7 @@ const DropdownMenu: React.FC<DropdownProperties> = ({
 }) => {
   return (
     <>
-      <button className="flex flex-col p-4" value={value}>
+      <button className="flex flex-col p-4 text-grayN100" value={value}>
         {optionName}
       </button>
     </>

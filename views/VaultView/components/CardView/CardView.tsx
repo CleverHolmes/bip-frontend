@@ -13,13 +13,17 @@ import { useTranslation } from "next-i18next";
 
 // Constant Data
 import Subfolder from "./Subfolder";
-import { newDropDownItems } from "views/VaultView/data/DropDown";
+import {
+  subDropDownItems,
+  newDropDownItems,
+} from "views/VaultView/data/DropDown";
 import DialogModal from "components/DialogModal";
 
 const CardView: React.FC<any> = (props) => {
   const { t } = useTranslation();
 
-  const [openToggle, setOpenToggle] = useState(false);
+  const [subPanelToggle, setSubPanelToggle] = useState(false);
+  const [newOpenToggle, setNewOpenToggle] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -37,11 +41,31 @@ const CardView: React.FC<any> = (props) => {
         <div className="flex items-center">
           <div className="">Quaryterly Reports</div>
           <div>
-            <IconButton
-              className="ml-16 cursor-pointer"
-              size="sm"
-              iconName="Menu"
-            />
+            <Menu
+              button={
+                <IconButton
+                  className="cursor-pointer"
+                  size="sm"
+                  iconName="Menu"
+                  onClick={() => setNewOpenToggle(!newOpenToggle)}
+                />
+              }
+              isExpanded={newOpenToggle}
+            >
+              <div className="flex flex-col">
+                <Card isFull className="p-12">
+                  {subDropDownItems.map((subDropDownItems, index) => {
+                    return (
+                      <DropdownMenu
+                        optionName={subDropDownItems.optionName}
+                        value={subDropDownItems.value}
+                        key={index}
+                      />
+                    );
+                  })}
+                </Card>
+              </div>
+            </Menu>
           </div>
         </div>
         <div>
@@ -49,15 +73,15 @@ const CardView: React.FC<any> = (props) => {
             button={
               <Button
                 className="mb-0"
-                iconAfter={openToggle ? "Up" : "Down"}
+                iconAfter={subPanelToggle ? "Up" : "Down"}
                 variant="secondary"
                 size="lg"
-                onClick={() => setOpenToggle(!openToggle)}
+                onClick={() => setSubPanelToggle(!subPanelToggle)}
               >
                 New
               </Button>
             }
-            isExpanded={openToggle}
+            isExpanded={subPanelToggle}
           >
             <div className="flex flex-col">
               <Card isFull className="p-12">
