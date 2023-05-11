@@ -34,7 +34,6 @@ yarn-error.log*
 .env.production.local
 
 #package.json
-package.json
 package-lock.json
 # main env
 .env

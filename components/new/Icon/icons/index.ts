@@ -62,6 +62,7 @@ import Alert from "./Alert";
 import FolderPlus from "./FolderPlus";
 import Folder from "./Folder";
 import FolderArrow from "./FolderArrow";
+import Setting from "./Setting";
 
 export const Icons = {
   Licensor,
@@ -127,6 +128,7 @@ export const Icons = {
   FolderPlus,
   Folder,
   FolderArrow,
+  Setting,
 } as const;
 
 export type IconNames = keyof typeof Icons;

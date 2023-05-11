@@ -1,9 +1,9 @@
-import { ChangeEvent } from 'react';
-import resolveConfig from 'tailwindcss/resolveConfig';
+import { ChangeEvent } from "react";
+import resolveConfig from "tailwindcss/resolveConfig";
 
-import Icon from 'components/new/Icon';
-import tailwindConfig from 'tailwind.config';
-import { generateUniqueId } from 'utils/generateUniqueId';
+import Icon from "components/new/Icon";
+import tailwindConfig from "tailwind.config";
+import { generateUniqueId } from "utils/generateUniqueId";
 
 const fullConfig = resolveConfig(tailwindConfig);
 
@@ -20,8 +20,8 @@ type CheckboxProperties = {
 const Checkbox: React.FC<CheckboxProperties> = ({
   checked = false,
   label,
-  value = 'Default',
-  name = 'checkbox',
+  value = "Default",
+  name = "checkbox",
   onChange,
   className,
   mute = false,
@@ -37,7 +37,7 @@ const Checkbox: React.FC<CheckboxProperties> = ({
   const uuid = generateUniqueId();
 
   return (
-    <div className={'flex flex-row items-center relative ' + className}>
+    <div className={"flex flex-row items-center relative " + className}>
       <div className="flex flex-row items-center relative">
         <input
           id={uuid}
@@ -60,8 +60,8 @@ const Checkbox: React.FC<CheckboxProperties> = ({
       {label && (
         <label
           className={
-            'font-bodyText ml-4 text-sm' +
-            (checked ? ' text-grayN500 ' : ' text-grayN100 ')
+            "font-bodyText ml-4 text-sm" +
+            (checked ? " text-grayN500 " : " text-grayN100 ")
           }
           htmlFor={uuid}
         >

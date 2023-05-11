@@ -1,10 +1,11 @@
-import React from 'react';
-import Image from 'next/image';
-import classNames from 'classnames';
+/* eslint-disable prettier/prettier */
+import React, { useState } from "react";
+import Image from "next/image";
+import classNames from "classnames";
 
-import Card from 'components/new/Card';
-import Checkbox from 'components/new/Checkbox/Checkbox';
-import IconButton from 'components/new/IconButton';
+import Card from "components/new/Card";
+import Checkbox from "components/new/Checkbox/Checkbox";
+import IconButton from "components/new/IconButton";
 
 type VaultCardProperties = {
   description: string;
@@ -17,28 +18,38 @@ const VaultCard: React.FC<VaultCardProperties> = ({
   description,
   type,
 }) => {
+  const [isSelect, setIsSelect] = useState(false);
+
+  function selectFile() {
+    setIsSelect(!isSelect);
+  }
+  // w-[14.25rem] h-[17.625rem]
   return (
     <Card
       className={classNames(
-        'flex flex-col items-center justify-center mx-auto py-0 pt-5 px-0 w-[14.25rem] h-[17.625rem]',
-        className
+        "flex flex-col items-center justify-center mx-auto py-0 pt-5 px-0 border w-full",
+        className,
+        isSelect ? "border-blueN100" : "border-grayN50"
       )}
     >
       <div className="w-full h-full px-5 border-b-1 border-grayN50">
-        <div className=' flex h-full flex-col align-middle gap-1 isolate'>
+        <div className=" flex h-full flex-col align-middle gap-1 isolate">
           {/* Actions */}
-          <div className='flex row justify-between items-center'>
-            <Checkbox label='' className=''></Checkbox>
+          <div className="flex row justify-between items-center">
+            <div onClick={selectFile}>
+              <Checkbox
+                value="ab"
+                checked={isSelect}
+                mute={true}
+                className="cursor-pointer"
+              />
+            </div>
 
-            <IconButton
-              className="cursor-pointer"
-              size="sm"
-              iconName="Menu"
-            />
+            <IconButton className="cursor-pointer" size="sm" iconName="Menu" />
           </div>
 
           {/* <Icon  */}
-          <div className='h-full items-center justify-center m-auto flex flex-row grow '>
+          <div className="flex items-center justify-center px-72 py-52">
             <Image
               src={`/images/Vault/${type}.svg`}
               width={71}
@@ -50,12 +61,9 @@ const VaultCard: React.FC<VaultCardProperties> = ({
         </div>
       </div>
       {/* description */}
-      <div className='w-full flex p-5 row items-center items start'>
+      <div className="w-full flex p-5 row items-center items start">
         {description}
       </div>
-
-
-
     </Card>
   );
 };
