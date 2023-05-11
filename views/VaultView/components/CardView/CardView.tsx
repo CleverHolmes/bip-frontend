@@ -19,6 +19,14 @@ import {
 } from "views/VaultView/data/DropDown";
 import DialogModal from "components/DialogModal";
 
+const data = [
+  { description: "Intros", type: "PDF" },
+  { description: "Intros", type: "PNG" },
+  { description: "Intros", type: "PPT" },
+  { description: "Intros", type: "JPG" },
+  { description: "Intros", type: "DOC" },
+];
+
 const CardView: React.FC<any> = (props) => {
   const { t } = useTranslation();
 
@@ -128,12 +136,14 @@ const CardView: React.FC<any> = (props) => {
         <Subfolder title="Subfolder 3" />
       </div>
       {/* Main Card View */}
-      <div className="grid grid-cols-4 gap-2 flex-wrap">
-        <VaultCard description="Intros" type="PDF" />
-        <VaultCard description="Intros" type="PNG" />
-        <VaultCard description="Intros" type="PPT" />
-        <VaultCard description="Intros" type="JPG" />
-        <VaultCard description="Intros" type="DOC" />
+      <div className="grid grid-cols-4 gap-16 mt-16">
+        {data.map((item, index) => (
+          <VaultCard
+            description={item.description}
+            type={item.type}
+            key={index}
+          />
+        ))}
       </div>
       <DialogModal
         closeModal={closeModal}
@@ -176,30 +186,6 @@ const CardView: React.FC<any> = (props) => {
           </Button>
           <Button className="" variant="primary" size="lg">
             {t("vault.delete")}
-          </Button>
-        </div>
-      </DialogModal> */}
-      {/* <DialogModal
-        closeModal={closeModal}
-        isOpen={isOpen}
-        dialogTitle={t("vault.create-folder")}
-      >
-        <div className="p-20 border-b-2 border-[#E9E9E9] w-[600px]">
-          <input
-            type="text"
-            id="input-group-1"
-            className="bg-backgroundInput text-grayN75 text-base rounded-lg border block w-full pl-10 2xl:mr-4 p-2.5 shadow-sm border-grayN100"
-            placeholder={t("vault.type-folder-name")}
-            // value={searchTerm}
-            // onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="flex justify-end items-center gap-16 px-20 py-16">
-          <Button className="" variant="secondary" size="lg">
-            {t("vault.cancel")}
-          </Button>
-          <Button className="" variant="primary" size="lg">
-            {t("vault.create")}
           </Button>
         </div>
       </DialogModal> */}

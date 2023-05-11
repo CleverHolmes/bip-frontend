@@ -1,4 +1,6 @@
+// eslint-disable-next-line prettier/prettier
 import React from "react";
+// eslint-disable-next-line prettier/prettier
 import Link from "next/link";
 
 type DropdownProperties = {
