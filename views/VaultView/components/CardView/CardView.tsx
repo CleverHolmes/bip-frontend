@@ -22,7 +22,8 @@ import DialogModal from "components/DialogModal";
 const CardView: React.FC<any> = (props) => {
   const { t } = useTranslation();
 
-  const [openToggle, setOpenToggle] = useState(false);
+  const [subPanelToggle, setSubPanelToggle] = useState(false);
+  const [newOpenToggle, setNewOpenToggle] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -46,10 +47,10 @@ const CardView: React.FC<any> = (props) => {
                   className="cursor-pointer"
                   size="sm"
                   iconName="Menu"
-                  onClick={() => setOpenToggle(!openToggle)}
+                  onClick={() => setNewOpenToggle(!newOpenToggle)}
                 />
               }
-              isExpanded={openToggle}
+              isExpanded={newOpenToggle}
             >
               <div className="flex flex-col">
                 <Card isFull className="p-12">
@@ -72,15 +73,15 @@ const CardView: React.FC<any> = (props) => {
             button={
               <Button
                 className="mb-0"
-                iconAfter={openToggle ? "Up" : "Down"}
+                iconAfter={subPanelToggle ? "Up" : "Down"}
                 variant="secondary"
                 size="lg"
-                onClick={() => setOpenToggle(!openToggle)}
+                onClick={() => setSubPanelToggle(!subPanelToggle)}
               >
                 New
               </Button>
             }
-            isExpanded={openToggle}
+            isExpanded={subPanelToggle}
           >
             <div className="flex flex-col">
               <Card isFull className="p-12">
