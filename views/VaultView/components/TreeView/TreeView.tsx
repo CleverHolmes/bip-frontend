@@ -1,7 +1,3 @@
-/* eslint-disable import/order */
-/* eslint-disable object-shorthand */
-/* eslint-disable prettier/prettier */
-import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import clsx from "clsx";
 import {
@@ -106,7 +102,7 @@ export const Node = function TreeNode({
   const { open, dispatch, selectId, selectedId } = useContext(TreeViewContext);
   const isOpen = open.get(id);
   return (
-    <li className="cursor-pointer select-none relative pl-24">
+    <li className="cursor-pointer select-none relative pl-16">
       <MotionConfig
         transition={{
           ease: [0.164, 0.84, 0.43, 1],
@@ -135,25 +131,23 @@ export const Node = function TreeNode({
         >
           {children?.length ? (
             <>
-              <div className="flex gap-2 items-center justify-center">
+              <div className="flex gap-1 items-center justify-center">
                 {isOpen ? (
                   <Icon
                     name="Folder"
-                    viewBox="-10 -10 32 38"
-                    size="xl"
+                    size="md"
                     color="blueN300"
                     className="shrink-0 grow-0"
                   />
                 ) : (
                   <Icon
                     name="Folder"
-                    viewBox="-10 -10 32 38"
-                    size="xl"
+                    size="md"
                     color="grayN100"
                     className="shrink-0 grow-0"
                   />
                 )}
-                <span className="whitespace-nowrap overflow-hidden text-sm">
+                <span className="whitespace-nowrap overflow-hidden text-sm font-bold">
                   {name}
                 </span>
               </div>
@@ -179,8 +173,7 @@ export const Node = function TreeNode({
               <div className="flex gap-2 items-center justify-center">
                 <Icon
                   name="Folder"
-                  viewBox="-10 -10 32 38"
-                  size="xl"
+                  size="md"
                   color="grayN100"
                   className="shrink-0 grow-0"
                 />

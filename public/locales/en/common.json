@@ -388,6 +388,7 @@
     "reset-all": "Reset All",
     "apply-filters": "Apply Filters",
     "type-folder-name": "Type folder name",
+    "folder-name": "Folder Name",
     "cancel": "Cancel",
     "delete": "Delete",
     "create": "Create",

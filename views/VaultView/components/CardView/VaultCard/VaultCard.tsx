@@ -10,11 +10,12 @@ import Menu from "components/new/Menu";
 
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import { cardDropDownItems } from "views/VaultView/data/DropDown";
+import { useFileContext } from "../../context/fileContext";
 
 type VaultCardProperties = {
   description: string;
   className?: string;
-  type?: string;
+  type: string;
 };
 
 const VaultCard: React.FC<VaultCardProperties> = ({
@@ -24,9 +25,19 @@ const VaultCard: React.FC<VaultCardProperties> = ({
 }) => {
   const [isSelect, setIsSelect] = useState(false);
   const [openToggle, setOpenToggle] = useState(false);
+  const { fileList, setFileList } = useFileContext();
+  const [menuValue, setMenuValue] = useState("");
 
   function selectFile() {
     setIsSelect(!isSelect);
+    let store = fileList;
+    if (!isSelect) {
+      store.push({ description: description, type: type });
+      setFileList(store);
+    } else {
+      store = store.filter((item) => item.description !== description);
+      setFileList(store);
+    }
   }
 
   return (
@@ -48,7 +59,6 @@ const VaultCard: React.FC<VaultCardProperties> = ({
                 className="cursor-pointer"
               />
             </div>
-
             <Menu
               button={
                 <IconButton
@@ -68,6 +78,7 @@ const VaultCard: React.FC<VaultCardProperties> = ({
                         optionName={cardDropDownItems.optionName}
                         value={cardDropDownItems.value}
                         key={index}
+                        setValue={setMenuValue}
                       />
                     );
                   })}
@@ -79,7 +90,7 @@ const VaultCard: React.FC<VaultCardProperties> = ({
           {/* <Icon  */}
           <div className="flex items-center justify-center px-72 py-52">
             <Image
-              src={`/images/Vault/${type}.svg`}
+              src={`/images/Vault/new_${type}.svg`}
               width={71}
               height={88}
               // objectFit="contain"

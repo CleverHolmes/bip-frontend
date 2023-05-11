@@ -17,6 +17,7 @@ type ButtonProperties = {
   className?: string;
   iconBefore?: IconNames;
   iconAfter?: IconNames;
+  viewBox?: string;
 };
 
 const Button: React.FC<ButtonProperties> = ({
@@ -29,6 +30,7 @@ const Button: React.FC<ButtonProperties> = ({
   iconBefore,
   iconAfter,
   fullWidth = false,
+  viewBox,
 }) => {
   const [mouseOver, setMouseOver] = useState(false);
 
@@ -75,7 +77,7 @@ const Button: React.FC<ButtonProperties> = ({
           name={iconBefore}
           color={iconColor}
           size={iconSize}
-          viewBox="0 0 16 16"
+          viewBox={viewBox || "0 0 24 24"}
         />
       )}
       {children}
@@ -85,7 +87,7 @@ const Button: React.FC<ButtonProperties> = ({
           name={iconAfter}
           color={iconColor}
           size={iconSize}
-          viewBox="0 0 16 16"
+          viewBox={viewBox || "0 0 24 24"}
         />
       )}
     </button>
