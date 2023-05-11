@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import resolveConfig from "tailwindcss/resolveConfig";
+import React, { useState } from 'react';
+import resolveConfig from 'tailwindcss/resolveConfig';
 
-import tailwindConfig from "tailwind.config";
-import Icon from "components/new/Icon";
-import type { IconNames } from "components/new/Icon/icons";
+import tailwindConfig from 'tailwind.config';
+import Icon from 'components/new/Icon';
+import type { IconNames } from 'components/new/Icon/icons';
 
 const fullConfig = resolveConfig(tailwindConfig);
 
 type ButtonProperties = {
   children?: React.ReactNode;
-  size?: "sm" | "lg";
-  variant?: "primary" | "secondary" | "tertiary";
+  size?: 'sm' | 'lg';
+  variant?: 'primary' | 'secondary' | 'tertiary';
   disabled?: boolean;
   fullWidth?: boolean;
   onClick?: () => void;
@@ -22,11 +22,11 @@ type ButtonProperties = {
 
 const Button: React.FC<ButtonProperties> = ({
   children,
-  size = "sm",
-  variant = "primary",
+  size = 'sm',
+  variant = 'primary',
   disabled = false,
   onClick,
-  className = "",
+  className = '',
   iconBefore,
   iconAfter,
   fullWidth = false,
