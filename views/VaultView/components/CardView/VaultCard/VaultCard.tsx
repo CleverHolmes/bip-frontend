@@ -79,7 +79,7 @@ const VaultCard: React.FC<VaultCardProperties> = ({
           {/* <Icon  */}
           <div className="flex items-center justify-center px-72 py-52">
             <Image
-              src={`/images/Vault/${type}.svg`}
+              src={`/images/Vault/new_${type}.svg`}
               width={71}
               height={88}
               // objectFit="contain"

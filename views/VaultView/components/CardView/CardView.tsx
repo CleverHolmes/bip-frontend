@@ -20,11 +20,14 @@ import {
 import DialogModal from "components/DialogModal";
 
 const data = [
-  { description: "Intros", type: "PDF" },
-  { description: "Intros", type: "PNG" },
-  { description: "Intros", type: "PPT" },
-  { description: "Intros", type: "JPG" },
-  { description: "Intros", type: "DOC" },
+  { description: "Investment Contract.Pdf", type: "PDF" },
+  { description: "Progress Report.Xls", type: "XLS" },
+  { description: "Investment Numbers.Doc", type: "DOC" },
+  { description: "Progress Report.Pdf", type: "PDF" },
+  { description: "Agency Operating Agreemen...", type: "PNG" },
+  { description: "Deal Sizing 2023.Xls", type: "XLS" },
+  { description: "Growth Projections.Pdf", type: "PDF" },
+  { description: "Company Queterly Report.Pdf", type: "PDF" },
 ];
 
 const CardView: React.FC<any> = (props) => {
