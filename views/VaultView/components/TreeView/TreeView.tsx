@@ -1,7 +1,3 @@
-/* eslint-disable import/order */
-/* eslint-disable object-shorthand */
-/* eslint-disable prettier/prettier */
-import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import clsx from "clsx";
 import {
@@ -22,13 +18,13 @@ export enum TreeViewActionTypes {
 
 export type TreeViewActions =
   | {
-    type: TreeViewActionTypes.OPEN;
-    id: string;
-  }
+      type: TreeViewActionTypes.OPEN;
+      id: string;
+    }
   | {
-    type: TreeViewActionTypes.CLOSE;
-    id: string;
-  };
+      type: TreeViewActionTypes.CLOSE;
+      id: string;
+    };
 
 export function treeviewReducer(
   state: TreeViewState,
@@ -55,9 +51,9 @@ export type TreeViewContextType = {
 
 export const TreeViewContext = createContext<TreeViewContextType>({
   open: new Map<string, boolean>(),
-  dispatch: () => { },
+  dispatch: () => {},
   selectedId: null,
-  selectId: () => { },
+  selectId: () => {},
 });
 
 type RootProps = {
@@ -106,7 +102,7 @@ export const Node = function TreeNode({
   const { open, dispatch, selectId, selectedId } = useContext(TreeViewContext);
   const isOpen = open.get(id);
   return (
-    <li className="flex flex-col cursor-pointer select-none relative">
+    <li className="cursor-pointer select-none relative pl-16">
       <MotionConfig
         transition={{
           ease: [0.164, 0.84, 0.43, 1],
@@ -115,79 +111,79 @@ export const Node = function TreeNode({
       >
         <div
           className={clsx(
-            "flex items-center justify-between space-x-2 font-mono font-medium px-1 h-14",
+            "flex items-center justify-between font-mono font-medium pr-16 h-14",
             selectedId === id
-              ? "bg-slate-200 border-r-4 border-blueN300"
+              ? "bg-slate-200 border-blueN300 border-r-4"
               : "bg-transparent"
           )}
           onClick={() => {
             isOpen
               ? dispatch({
-                id: id,
-                type: TreeViewActionTypes.CLOSE,
-              })
+                  id: id,
+                  type: TreeViewActionTypes.CLOSE,
+                })
               : dispatch({
-                id: id,
-                type: TreeViewActionTypes.OPEN,
-              });
+                  id: id,
+                  type: TreeViewActionTypes.OPEN,
+                });
             selectId(id);
           }}
         >
           {children?.length ? (
             <>
+              <div className="flex gap-1 items-center justify-center">
+                {isOpen ? (
+                  <Icon
+                    name="Folder"
+                    size="md"
+                    color="blueN300"
+                    className="shrink-0 grow-0"
+                  />
+                ) : (
+                  <Icon
+                    name="Folder"
+                    size="md"
+                    color="grayN100"
+                    className="shrink-0 grow-0"
+                  />
+                )}
+                <span className="whitespace-nowrap overflow-hidden text-sm font-bold">
+                  {name}
+                </span>
+              </div>
               {isOpen ? (
                 <Icon
-                  name="Folder"
-                  viewBox="-10 -10 32 38"
-                  size="xl"
-                  color="blueN300"
+                  name="FolderArrow"
+                  viewBox="0 0 10 10"
+                  size="sm"
                   className="shrink-0 grow-0"
                 />
               ) : (
                 <Icon
-                  name="Folder"
-                  viewBox="-10 -10 32 38"
-                  size="xl"
-                  color="grayN100"
-                  className="shrink-0 grow-0"
-                />
-              )}
-              <span className="text-ellipsis whitespace-nowrap overflow-hidden">
-                {name}
-              </span>
-              {isOpen ? (
-                <Icon
                   name="FolderArrow"
-                  viewBox="-10 -10 32 38"
-                  size="xl"
-                  className="shrink-0 grow-0"
-                />
-              ) : (
-                <Icon
-                  name="FolderArrow"
-                  viewBox="-10 -10 32 38"
-                  size="xl"
+                  viewBox="0 0 10 10"
+                  size="sm"
                   color="grayN100"
                   className="shrink-0 grow-0 rotate-180"
                 />
               )}
             </>
-          ) :
-            (
-              <>
+          ) : (
+            <>
+              <div className="flex gap-2 items-center justify-center">
                 <Icon
                   name="Folder"
-                  viewBox="-10 -10 32 38"
-                  size="xl"
+                  size="md"
                   color="grayN100"
                   className="shrink-0 grow-0"
                 />
                 <span className="text-ellipsis whitespace-nowrap overflow-hidden">
                   {name}
                 </span>
-              </>
-            )}
-
+              </div>
+              <div></div>
+            </>
+          )}
         </div>
         <AnimatePresence initial={false}>
           {children?.length && isOpen && (
@@ -223,11 +219,11 @@ export const Node = function TreeNode({
               }}
               key={"ul"}
               role="group"
-              className="pl-5 border-y-1 border-grayN50"
+              className="border-y-1 border-grayN50"
             >
               {children.map((node) => (
                 <div key={node.id}>
-                  {/*node.children?.length && */<Node node={node} />}
+                  {/*node.children?.length && */ <Node node={node} />}
                 </div>
               ))}
             </motion.ul>

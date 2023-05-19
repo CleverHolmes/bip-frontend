@@ -1,38 +1,38 @@
-import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
-import 'react-loading-skeleton/dist/skeleton.css';
-import 'filepond/dist/filepond.min.css';
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
-import 'react-toastify/dist/ReactToastify.css';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
-import 'react-loading-skeleton/dist/skeleton.css';
-import 'styles/globals.css';
-import { appWithTranslation } from 'next-i18next';
-import { useCookies } from 'react-cookie';
-import Head from 'next/head';
-import { CookiesProvider } from 'react-cookie';
-import * as Sentry from '@sentry/nextjs';
-import { ThemeProvider } from '@material-tailwind/react';
-import type { AppProps } from 'next/app';
-import { ToastContainer } from 'react-toastify';
-import React, { useEffect, useState } from 'react';
-import { pdfjs } from 'react-pdf';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useTranslation } from 'next-i18next';
+import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import "react-loading-skeleton/dist/skeleton.css";
+import "filepond/dist/filepond.min.css";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+import "react-toastify/dist/ReactToastify.css";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import "react-pdf/dist/esm/Page/TextLayer.css";
+import "react-loading-skeleton/dist/skeleton.css";
+import "styles/globals.css";
+import { appWithTranslation } from "next-i18next";
+import { useCookies } from "react-cookie";
+import Head from "next/head";
+import { CookiesProvider } from "react-cookie";
+import * as Sentry from "@sentry/nextjs";
+import { ThemeProvider } from "@material-tailwind/react";
+import type { AppProps } from "next/app";
+import { ToastContainer } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import { pdfjs } from "react-pdf";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useTranslation } from "next-i18next";
 // @ts-ignore
-import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
-import { NextRouter, useRouter } from 'next/router';
+import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
+import { NextRouter, useRouter } from "next/router";
 
-import ChatProvider from 'modules/chat/chatProvider';
-import AppWrapper from 'wrapper/AppWrapper';
-import { initGA } from 'utils/initGA';
-import { TokensOrCookiesProvider } from 'contexts/TokensOrCookies';
-import { COOKIE_CONSENT } from 'hooks/useAuth';
-import routes from 'constants/routes';
-import BannerBottom from 'components/BannerBottom';
-import CookieConsent from 'components/new/CookieConsent';
-import useStorage from 'hooks/useStorage';
+import ChatProvider from "modules/chat/chatProvider";
+import AppWrapper from "wrapper/AppWrapper";
+import { initGA } from "utils/initGA";
+import { TokensOrCookiesProvider } from "contexts/TokensOrCookies";
+import { COOKIE_CONSENT } from "hooks/useAuth";
+import routes from "constants/routes";
+import BannerBottom from "components/BannerBottom";
+import CookieConsent from "components/new/CookieConsent";
+import useStorage from "hooks/useStorage";
 
 declare global {
   interface Window {
@@ -40,7 +40,7 @@ declare global {
   }
 }
 
-declare module 'dayjs' {
+declare module "dayjs" {
   interface Dayjs {
     fromNow(withoutSuffix?: boolean): string;
   }
@@ -48,9 +48,9 @@ declare module 'dayjs' {
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV !== "development") {
   Sentry.init({
-    dsn: 'https://0fec3420640d4a49b94ff92518421c33@o4504181562146816.ingest.sentry.io/4504181810593792',
+    dsn: "https://0fec3420640d4a49b94ff92518421c33@o4504181562146816.ingest.sentry.io/4504181810593792",
     // Set tracesSampleRate to 1.0 to capture 100%
     // of transactions for performance monitoring.
     // We recommend adjusting this value in production
@@ -76,9 +76,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const [cookies, setCookies, removeCookies] = useCookies([
     COOKIE_CONSENT,
-    '_ga',
-    '_gat',
-    '_gid',
+    "_ga",
+    "_gat",
+    "_gid",
   ]);
   const [isCookiesConsentModalOpen, setIsCookiesConsentModalOpen] = useState(
     cookies.CookieConsent === undefined ? true : false
@@ -86,8 +86,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [showCookieConsentBanner, setShowCookieConsentBanner] = useState(true);
 
   const isUnprotected =
-    router.pathname === routes.home ||
-    router.pathname === routes.onboarding;
+    router.pathname === routes.home || router.pathname === routes.onboarding;
 
   const handleAcceptCookie = () => {
     if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID) {
@@ -106,7 +105,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
-    const isConsent = cookies.CookieConsent === 'true';
+    const isConsent = cookies.CookieConsent === "true";
     if (isConsent) {
       handleAcceptCookie();
     }
@@ -165,13 +164,13 @@ function MyApp({ Component, pageProps }: AppProps) {
                 draggable
                 pauseOnHover
                 toastClassName={() =>
-                  'text-grayN100 font-bodyText text-base bg-white relative flex py-2 mb-2 pr-2 pl-3 min-h-20 w-96 rounded-lg shadow-lg justify-between overflow-hidden cursor-pointer'
+                  "text-grayN100 font-bodyText text-base bg-white relative flex py-2 mb-2 pr-2 pl-3 min-h-20 w-96 rounded-lg shadow-lg justify-between overflow-hidden cursor-pointer"
                 }
                 progressClassName="toast-custom-progress-bar"
               />
               {false &&
                 showCookieConsentBanner &&
-                cookies.CookieConsent !== 'true' && (
+                cookies.CookieConsent !== "true" && (
                   <BannerBottom
                     isOpen={isCookiesConsentModalOpen}
                     closeModal={closeCookiesConsentModal}
